@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoodBot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f0f4f8;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #4CAF50, #388E3C);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.2em;
+        }
+
+        nav {
+            background: #333;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-in-out;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        nav a:hover {
+            background: #575757;
+            border-radius: 5px;
+            transform: scale(1.1);
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 60%;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .section h2 {
+            margin-top: 0;
+            color: #388E3C;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+            font-size: 2em;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            margin: 20px 0;
+            display: flex;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .section ul li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-image {
+            max-width: 300px;
+            max-height: 300px;
+            object-fit: cover;
+            margin-right: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in;
+        }
+
+        .event-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .event-header {
+            margin-bottom: 10px;
+        }
+
+        .event-header strong {
+            font-size: 1.5em;
+            color: #4CAF50;
+        }
+
+        .event-header span {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .event-description {
+            font-size: 1em;
+            color: #555;
+            margin-top: 15px;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .event-form {
+            margin-bottom: 30px;
+        }
+
+        .event-form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        .event-form input, .event-form textarea, .event-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .event-form button {
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .event-form button:hover {
+            background: #388E3C;
+            transform: scale(1.1);
+        }
+
+        .remove-btn {
+            background: #e53935;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            align-self: flex-end;
+        }
+
+        .remove-btn:hover {
+            background: #c62828;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                padding: 5px 10px;
+                margin: 0 5px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .event-image {
+                max-width: 150px;
+                max-height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HoodBot</h1>
+        <p>Where Bold Neighbors Need Help</p>
+    </header>
+
+    <nav>
+        <a href="#gardening">Gardening</a>
+        <a href="#events">Events</a>
+        <a href="#environment">Environment</a>
+        <a href="#animals">Animals</a>
+        <a href="#help">Neighbors Need Help</a>
+    </nav>
+
+    <div class="container">
+        <section id="event-form" class="event-form">
+            <h2>Add a New Event</h2>
+            <form id="addEventForm">
+                <label for="eventName">Event Name:</label>
+                <input type="text" id="eventName" name="eventName" placeholder="Enter the event name" required>
+
+                <label for="eventDate">Event Date:</label>
+                <input type="date" id="eventDate" name="eventDate" required>
+
+                <label for="eventTime">Event Time:</label>
+                <input type="time" id="eventTime" name="eventTime" required>
+
+                <label for="eventDescription">Description:</label>
+                <textarea id="eventDescription" name="eventDescription" placeholder="Describe the event" required></textarea>
+
+                <label for="eventCategory">Category:</label>
+                <select id="eventCategory" name="eventCategory" required>
+                    <option value="gardening">Gardening</option>
+                    <option value="events">Events</option>
+                    <option value="environment">Environment</option>
+                    <option value="animals">Animals</option>
+                    <option value="help">Neighbors Need Help</option>
+                </select>
+
+                <label for="eventPublisher">Publisher:</label>
+                <input type="text" id="eventPublisher" name="eventPublisher" placeholder="Enter your name" required>
+
+                <label for="eventImage">Upload Image:</label>
+                <input type="file" id="eventImage" name="eventImage" accept="image/*">
+
+                <button type="submit">Add Event</button>
+            </form>
+        </section>
+
+        <section id="gardening" class="section">
+            <h2>Gardening</h2>
+            <p>Join us in creating beautiful gardens and green spaces in our community. Share your skills, or learn from others!</p>
+            <ul></ul>
+        </section>
+        
+        <section id="events" class="section">
+            <h2>Events</h2>
+            <p>Discover exciting community events and activities happening near you. Be a part of the action!</p>
+            <ul></ul>
+        </section>
+        
+        <section id="environment" class="section">
+            <h2>Environment</h2>
+            <p>Support initiatives to preserve our environment and make sustainable choices. Together, we can make a difference!</p>
+            <ul></ul>
+        </section>
+        
+        <section id="animals" class="section">
+            <h2>Animals</h2>
+            <p>Connect with animal lovers and help care for our furry friends. Share your passion for animals with the community!</p>
+            <ul></ul>
+        </section>
+        
+        <section id="help" class="section">
+            <h2>Neighbors Need Help</h2>
+            <p>Offer your support to neighbors in need. Every small act of kindness makes our community stronger!</p>
+            <ul></ul>
+        </section>
+        
+    </div>
+
+    <footer>
+        <p>&copy; 2025 HoodBot Initiative</p>
+    </footer>
+
+    <script>
+        document.getElementById('addEventForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const eventName = document.getElementById('eventName').value;
+            const eventDate = document.getElementById('eventDate').value;
+            const eventTime = document.getElementById('eventTime').value;
+            const eventDescription = document.getElementById('eventDescription').value;
+            const eventCategory = document.getElementById('eventCategory').value;
+            const eventPublisher = document.getElementById('eventPublisher').value;
+            const eventImageFile = document.getElementById('eventImage').files[0];
+
+            const section = document.querySelector(`#${eventCategory} ul`);
+            const newEvent = document.createElement('li');
+
+            let imageUrl = '';
+            if (eventImageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imageUrl = e.target.result;
+                    const imgElement = `<img src="${imageUrl}" alt="Event Image" class="event-image">`;
+                    newEvent.innerHTML = `<div class="event-content">${imgElement}<div class="event-header"><strong>${eventName}</strong><span>Posted by: ${eventPublisher} | ${eventDate} ${eventTime}</span></div><div class="event-description">${eventDescription}</div></div><button class="remove-btn">Remove</button>`;
+
+                    newEvent.querySelector('.remove-btn').addEventListener('click', function() {
+                        newEvent.remove();
+                    });
+
+                    section.appendChild(newEvent);
+                };
+                reader.readAsDataURL(eventImageFile);
+            } else {
+                newEvent.innerHTML = `<div class="event-content"><div class="event-header"><strong>${eventName}</strong><span>Posted by: ${eventPublisher} | ${eventDate} ${eventTime}</span></div><div class="event-description">${eventDescription}</div></div><button class="remove-btn">Remove</button>`;
+
+                newEvent.querySelector('.remove-btn').addEventListener('click', function() {
+                    newEvent.remove();
+                });
+
+                section.appendChild(newEvent);
+            }
+
+            this.reset();
+        });
+    </script>
+</body>
+</html>
